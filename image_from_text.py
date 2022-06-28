@@ -48,7 +48,11 @@ if __name__ == '__main__':
         seed = args.seed,
         image_token_count = args.image_token_count
     )
-    
+
     if image != None:
         save_image(image, args.image_path)
-        print(ascii_from_image(image, size=128))
+        try:
+            cols = os.get_terminal_size().columns
+        except Exception:
+            cols = 128
+        print(ascii_from_image(image, size=cols))
